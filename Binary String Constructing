@@ -1,0 +1,95 @@
+#include<bits/stdc++.h>
+using namespace std;
+/*
+ *
+ 	 	(10) or (01)
+
+
+ 	 	(01) (10) x/2
+		1 1 1
+		01
+		10
+		------
+		5 3 1
+		00000111
+
+		------
+		5 3 2  (01) ones then zeros
+					zeros ones
+		01110000
+
+
+		------
+		5 3 3 (01) zeros then ones
+		01000011
+
+		------
+		5 3 4 (0101) ones then zeros
+		01011000
+		------
+		5 3 5  (0101) zeros then ones
+		01010001
+		-----
+		5 3 6  (010101) ones then zeros
+		01010100
+
+		------------------------------------------------
+
+
+		2 4 1
+		111100
+		-----
+
+		2 4 2
+		100111 (10) zeros then ones
+		-----
+
+		2 4 3
+		101110 (10) ones then zeros
+		-----
+
+		2 4 4
+		101011 (1010) zeros then ones
+		-----
+
+
+
+ *
+ */
+int main() {
+    	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+		int a, b, c,cc;
+
+		cin >> a >> b >> c;
+		cc = c / 2;
+
+		a -= cc; b -= cc;
+		if (a < b){
+			while (cc--) cout << "10";
+			if (c & 1){
+				while (b--) cout << "1";
+				while (a--) cout << "0";
+			}
+			else{
+				while (a--) cout << "0";
+				while (b--) cout << "1";
+			}
+		}
+		else{
+			while (cc--) cout << "01";
+			if (c & 1){
+				while (a--) cout << "0";
+				while (b--) cout << "1";
+			}
+			else{
+				while (b--) cout << "1";
+				while (a--) cout << "0";
+			}
+		}
+
+
+
+
+
+}
