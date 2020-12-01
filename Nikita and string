@@ -1,0 +1,69 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+/*
+ * 
+ * 		aabbbbbbbbaaa
+ * 	
+ * 	aa  1100000000111
+ * 	
+ * 	pa  1222222222345
+ * 	
+ * 	bb  0011111111000
+ * 	
+ * 	pb  0012345678888
+ * 	
+ * 	loop (i -> sz)
+ * 		loop(j(i) -> sz)
+ * 			(i  j)
+ * 				0  i    j  n
+ * 			a = aaa **** aaa
+ * 			b = *** bbbb ***
+ * 			   x = pb[j] - pb[i]
+ * 			   
+* 			// y = pa[n] - pa[j] + pa[i]
+* 			
+ * 			
+ * 			
+ */
+
+
+
+
+
+
+
+
+
+
+
+int aa[5005], bb[5005];
+int main() {
+    	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    		string s;
+    		cin >> s;
+    		s = '#' + s;
+    		int n=s.size();
+    		for (int i = 1; i < n; i++) {
+    			if (s[i] == 'a')aa[i]++;
+    			else bb[i]++;
+    		}
+    		for (int i = 1; i <= n; i++) {
+    			aa[i] += aa[i - 1];
+    			bb[i] += bb[i - 1];
+    		}
+    		int ans = 0;
+    		for (int i = 0; i <= n; i++) {
+    			for (int j = i; j <= n; j++) {
+    				// aaa(i - j)aaaa
+    				int a = aa[n] - aa[j] + aa[i];
+    				int b = bb[j] - bb[i];
+    				ans = max(a + b, ans);
+    			}
+    		}
+    		cout << ans;
+
+
+
+
+}
