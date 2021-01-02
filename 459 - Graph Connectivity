@@ -1,0 +1,66 @@
+/***  الرحيم الرحمن الله بسم   ***/
+#include<bits/stdc++.h>
+#define sz(s)               (int)s.size()
+#define mem(x,y)    memset(x,y,sizeof(x))
+#define all(v) ((v).begin()), ((v).end())
+#define RT(x)           return cout<<x,0;
+#define endl                         '\n'
+#define watch(x) cout<<#x<<" = { "<<x<<" }\n"
+#define IO ios::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+const int dx[] = { 0, -1, 0, 1, 1, 1, -1, -1 };
+const int dy[] = { 1, 0, -1, 0, 1, -1, 1, -1 };
+const int OO = 0x3f3f3f3f, N = 300000 + 5, mod = 1e5 + 7;
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+void run() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+#ifndef ONLINE_JUDGE
+	freopen("input.txt", "r", stdin);
+#else
+	//freopen("groups.in", "r", stdin);
+#endif
+}
+vector<vector<int>>g;
+vector<int>vis;
+void dfs(int u){
+	vis[u]=1;
+	for(auto t: g[u]){
+		if(!vis[t])dfs(t);
+	}
+}
+int main() {//IO
+	run();
+	int n;cin>>n;
+	cin.ignore();
+	int nn=n;
+	while(n--){
+		char start;
+		string s;
+		cin>>start;
+		cin.ignore();
+		g  = vector<vector<int>>(26);
+		while(getline(cin,s)){
+		//	cout<<s<<endl;
+			if(s=="")break;
+			g[s[0]-'A'].push_back(s[1]-'A');
+			g[s[1]-'A'].push_back(s[0]-'A');
+		}
+		int cnt=0;
+		vis = vector<int>(26);
+		for(int i=0;i<=start-'A';i++){
+			if(!vis[i]){
+				cnt++;
+				dfs(i);
+			}
+		}
+		cout<<cnt<<endl;
+		if(n)cout<<endl;
+
+	}
+
+
+
+}
