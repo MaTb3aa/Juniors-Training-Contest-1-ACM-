@@ -1,0 +1,69 @@
+/***  الرحيم الرحمن الله بسم   ***/
+#include<bits/stdc++.h>
+#define sz(s)               (int)s.size()
+#define mem(x,y)    memset(x,y,sizeof(x))
+#define all(v) ((v).begin()), ((v).end())
+#define RT(x)           return cout<<x,0;
+#define endl                         '\n'
+#define watch(x) cout<<#x<<" = { "<<x<<" }\n"
+#define IO ios::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+const int dx[] = { 0, -1, 0, 1, 1, 1, -1, -1 };
+const int dy[] = { 1, 0, -1, 0, 1, -1, 1, -1 };
+const int OO = 0x3f3f3f3f, N = 300000 + 5, mod = 1e5 + 7;
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+void run() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+#ifndef ONLINE_JUDGE
+	freopen("input.txt", "r", stdin);
+#else
+	//freopen("groups.in", "r", stdin);
+#endif
+}
+
+int main() {//IO
+	run();
+	int n;
+	while(cin>>n){
+		int m;cin>>m;
+		cin.ignore();
+		string s;cin>>s;
+		vector<vector<int>>g(26);
+		while(m--){
+			char a,b;
+			cin>>a>>b;
+			g[a-'A'].push_back(b-'A');
+			g[b-'A'].push_back(a-'A');
+		}
+		vector<int>ok(26);
+		for(auto t : s)ok[t-'A']++;
+
+		int cnt=0,rem=n-3;
+		if(!rem)cout<<"WAKE UP IN, 0, YEARS\n";
+		else {
+			bool kk=1;
+			while(kk){
+				kk=0;
+				set<int>curok;
+				for(int i=0;i<26;i++){
+					if(!ok[i]){
+						int have=0;
+						for(auto child : g[i]){
+							if(ok[child])have++;
+						}
+						if(have>=3)curok.insert(i),kk=1;
+					}
+				}
+				if(kk){
+					for(auto t : curok)ok[t]++,rem--;
+					cnt++;
+				}
+			}
+			if(!rem)cout<<"WAKE UP IN, "<<cnt<<", YEARS\n";
+			else cout<<"THIS BRAIN NEVER WAKES UP\n";
+		}
+	}
+}
